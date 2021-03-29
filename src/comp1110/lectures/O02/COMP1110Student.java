@@ -1,6 +1,6 @@
 package comp1110.lectures.O02;
 
-public class COMP1110Student extends Student {
+public class COMP1110Student extends Student implements Comparable<COMP1110Student> {
     public static int numberOfStudents; // total number of enrolled students
 
     private int ass1;
@@ -51,4 +51,8 @@ public class COMP1110Student extends Student {
         return finalGrade;
     }
 
+    @Override
+    public int compareTo(COMP1110Student o) {
+        return this.getName().compareTo(o.getName());
+    }
 }
