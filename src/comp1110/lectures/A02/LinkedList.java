@@ -45,6 +45,21 @@ public class LinkedList<T> implements List<T> {
             return this.next.removeRecursive(index - 1);
         }
 
+        /**
+         * @param newNext
+         * @return the start of the new list (once reversed)
+         */
+        LLNode reverseRecursive(LLNode newNext) {
+            LLNode oldNext = this.next;
+            this.next = newNext;
+            if (oldNext == null) {
+                // only one node in this list
+                return this;
+            } else {
+                return oldNext.reverseRecursive(this);
+            }
+        }
+
         @Override
         public String toString() {
             return value + " " + next.toString();
@@ -106,6 +121,10 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void reverse() {
-        // TODO
+        if (start != null) {
+            LLNode oldStart = start;
+            start = start.reverseRecursive(null);
+            end = oldStart;
+        }
     }
 }
