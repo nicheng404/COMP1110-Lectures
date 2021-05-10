@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class SetTest {
-    public abstract <T> Set<T> createSet();
+    public abstract <T extends Comparable<T>> Set<T> createSet();
 
     @Test
     public void testAdd() {
@@ -38,6 +38,7 @@ public abstract class SetTest {
     public void testAddNull() {
         Set<String> set = createSet();
         assertFalse(set.add(null));
+        assertTrue(set.add("Arthur")); // so test doesn't trivially pass
     }
 
     @Test
@@ -54,6 +55,16 @@ public abstract class SetTest {
         assertTrue(set.remove("Arthur"));
         assertEquals(3, set.size());
         String[] expected = new String[]{"Ford", "Trillian", "Zaphod"};
+        checkSetContents(set, expected);
+    }
+
+    @Test
+    public void testRemoveOnlyValue() {
+        Set<String> set = createSet();
+        assertTrue(set.add("Arthur"));
+        assertTrue(set.remove("Arthur"));
+        assertEquals(0, set.size());
+        String[] expected = new String[]{};
         checkSetContents(set, expected);
     }
 
