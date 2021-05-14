@@ -75,6 +75,12 @@ public abstract class SetTest {
         assertTrue(set.contains("Arthur"));
         assertFalse(set.contains("Marvin"));
         assertFalse(set.contains(null));
+        set.add("Zaphod");
+        set.add("Trillian");
+        assertTrue(set.contains("Zaphod"));
+        assertTrue(set.contains("Trillian"));
+        String[] expected = new String[]{"Arthur", "Trillian", "Zaphod"};
+        checkSetContents(set, expected);
     }
 
     private void checkSetContents(Set<String> set, String[] expected) {

@@ -27,7 +27,7 @@ public class BSTSet<T extends Object & Comparable<? super T>> implements Set<T> 
          */
         boolean addSubtree(BSTree subtree) {
             if (subtree == null) return false;
-            int comparison = value.compareTo(subtree.value);
+            int comparison = subtree.value.compareTo(value);
             if (comparison < 0) {
                 if (left != null) {
                     left.addSubtree(subtree);
@@ -60,13 +60,13 @@ public class BSTSet<T extends Object & Comparable<? super T>> implements Set<T> 
          * element is not contained in the tree
          */
         BSTree find(T element, boolean remove) {
-            int comparison = value.compareTo(element);
+            int comparison = element.compareTo(value);
             if (comparison == 0) {
                 return this;
             } else if (comparison < 0) {
                 if (left != null) {
                     BSTree found = left.find(element, remove);
-                    if (found == left) {
+                    if (found == left && remove) {
                         left = null;
                     }
                     return found;
@@ -76,7 +76,7 @@ public class BSTSet<T extends Object & Comparable<? super T>> implements Set<T> 
             } else {
                 if (right != null) {
                     BSTree found = right.find(element, remove);
-                    if (found == right) {
+                    if (found == right && remove) {
                         right = null;
                     }
                     return found;
