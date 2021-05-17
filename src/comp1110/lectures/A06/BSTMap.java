@@ -5,6 +5,7 @@ import comp1110.lectures.A04.Set;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     class KVPair {
+        // BSTMap$KVPair.class
         K key;
         V value;
 

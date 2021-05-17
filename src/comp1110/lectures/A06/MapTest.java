@@ -83,6 +83,19 @@ public abstract class MapTest {
     }
 
     @Test
+    public void testRemoveLarge() {
+        Map<String, Double> map = createMap();
+        for (int i = 0; i < 1000; i++) {
+            map.put(String.valueOf(i), Double.valueOf(i));
+        }
+        assertEquals(1000, map.size());
+        assertTrue(map.remove("42"));
+        assertEquals(999, map.size());
+        assertTrue(map.remove("43"));
+        assertEquals(998, map.size());
+    }
+
+    @Test
     public void testRemoveKeyNull() {
         Map<String, Double> map = createMap();
         assertThrows(IllegalArgumentException.class, () -> map.remove(null));
