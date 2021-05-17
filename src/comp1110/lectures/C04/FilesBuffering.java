@@ -20,8 +20,8 @@ public class FilesBuffering {
                     in = new FileInputStream("assets/hamlet.txt");
                     out = new FileOutputStream("assets/hamlet-copy.txt");
                 } else {
-                    in = new BufferedInputStream(new FileInputStream("assets/dictionary.txt"), bufferSize);
-                    out = new BufferedOutputStream(new FileOutputStream("assets/dictionary-copy.txt"), bufferSize);
+                    in = new BufferedInputStream(new FileInputStream("assets/hamlet.txt"), bufferSize);
+                    out = new BufferedOutputStream(new FileOutputStream("assets/hamlet-copy.txt"), bufferSize);
                 }
                 start = System.nanoTime();
                 int i;
