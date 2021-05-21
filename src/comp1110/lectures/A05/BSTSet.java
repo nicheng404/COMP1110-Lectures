@@ -1,5 +1,6 @@
 package comp1110.lectures.A05;
 
+import comp1110.lectures.A04.HashSet;
 import comp1110.lectures.A04.Set;
 
 import java.util.ArrayList;
@@ -173,5 +174,10 @@ public class BSTSet<T extends Object & Comparable<? super T>> implements Set<T> 
             root.addElements(elements);
         }
         return elements.toArray();
+    }
+
+    @Override
+    public Set<T> newInstance() {
+        return new BSTSet<>();
     }
 }

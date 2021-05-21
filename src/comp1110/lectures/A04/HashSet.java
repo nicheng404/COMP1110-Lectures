@@ -4,11 +4,16 @@ import java.util.LinkedList;
 
 public class HashSet<T> implements Set<T> {
     private static final int DEFAULT_SIZE = 4;
-    private LinkedList<T>[] table;
+    public LinkedList<T>[] table;
     private int size;
 
+
+    public HashSet(int size) {
+        table = new LinkedList[size];
+    }
+
     public HashSet() {
-        table = new LinkedList[DEFAULT_SIZE];
+        this(DEFAULT_SIZE);
     }
 
     @Override
@@ -76,5 +81,10 @@ public class HashSet<T> implements Set<T> {
         }
 
         return elements;
+    }
+
+    @Override
+    public Set<T> newInstance() {
+        return new HashSet<>(table.length);
     }
 }
